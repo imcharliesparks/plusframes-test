@@ -1,4 +1,6 @@
 import Card from '@/components/general/Card';
+import Loading from '@/components/general/Loading';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 const query = `
@@ -24,6 +26,7 @@ const query = `
 `;
 
 export default function Home() {
+  const router = useRouter();
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -42,20 +45,19 @@ export default function Home() {
         }
 
         const result = await response.json();
-        console.log('result', result)
         setData(result);
         setLoading(false);
       } catch (err) {
         // @ts-ignore
         setError(err.message);
-        setLoading(false);
+        router.push('/')
       }
     }
 
     fetchPosts();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
   if (error) return <div>Error: {error}</div>;
 
   return (
