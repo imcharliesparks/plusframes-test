@@ -1,3 +1,4 @@
+import Card from '@/components/general/Card';
 import { useState, useEffect } from 'react';
 
 const query = `
@@ -58,12 +59,15 @@ export default function Home() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <div className="flex flex-col mx-auto mt-10">
+      <h1 className="text-xl text-center mb-8">Player Results</h1>
       {data?.player.sets.nodes.map((set: any) => (
-        <div key={set.id}>
-          <h2>{set.event.name}</h2>
-          <p>{set.displayScore}</p>
-        </div>
+        <Card 
+          key={set.id}
+          title={set.event.name}
+          subtitle={set.displayScore}
+          className="mx-auto my-2 w-[375px]"
+        />
       ))}
     </div>
   );
