@@ -1,0 +1,3 @@
+- [ ] Correlate our PFUser data with the data from Clerk
+- [ ] Figure out how to properly gather player seed data
+- [ ] Wire up GQL tooling (Apollo, playground, etc.)
