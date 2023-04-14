@@ -2,6 +2,7 @@ import Card from '@/components/general/Card';
 import Loading from '@/components/general/Loading';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Sets from '../../lib/queries/Sets.graphql'
 
 const query = `
   query Sets {
