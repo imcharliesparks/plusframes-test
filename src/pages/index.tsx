@@ -92,8 +92,8 @@ export default function Home() {
         </Link>
 
         <button
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          onClick={() => signOut()}
+          className="group rounded-lg border border-transparent px-5 py-4 lg:pb-4 lg:text-left xs:text-center lg:pt-0 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          onClick={handleSignOut}
         >
           <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
             Sign Out{' '}
@@ -109,7 +109,7 @@ export default function Home() {
         </button>
 
         <Link
-          href="/app/api-test"
+          href="/app/results"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
