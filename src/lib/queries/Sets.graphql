@@ -1,0 +1,19 @@
+query Sets {
+  player(id: 1000) {
+    id
+    sets(perPage: 5, page: 10) {
+      nodes {
+        id
+        displayScore
+        event {
+          id
+          name
+          tournament {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
