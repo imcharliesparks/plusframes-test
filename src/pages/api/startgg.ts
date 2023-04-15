@@ -1,3 +1,4 @@
+import { APIMethods, APIStatuses, GeneralAPIResponses } from '@/shared/types'
 import { extractMatchScores } from '@/shared/utils'
 import { withAuth } from '@clerk/nextjs/dist/api'
 import { GraphQLClient, gql } from 'graphql-request'
@@ -13,6 +14,12 @@ const graphQLClient = new GraphQLClient(START_API_ENDPOINT, {
 
 // TODO: Update the typing in here once we have solid idea of the response types
 const handler = withAuth(async (req: NextApiRequest, res: NextApiResponse) => {
+	const { method } = req
+
+	if (method !== APIMethods.GET) {
+		return res.status(404).json({ status: APIStatuses.ERROR, type: GeneralAPIResponses.INVALID_REQUEST_TYPE })
+	}
+
 	try {
 		// Forward the incoming request to the external GraphQL API
 		const query = gql`

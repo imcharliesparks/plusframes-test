@@ -33,6 +33,15 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        // TODO: Revisit color palette
+        pfBlue: '#67669a',
+        pfPink: '#ad5682',
+        pfLightBlue: '#7f6a93',
+        pfLightPink: '#c37196',
+        pfPurple: '#a5a0c0',
+        pfWarmPink: '#f1b6cc'
+      },
     },
   },
   plugins: [],
