@@ -28,9 +28,15 @@ const query = `
 
 export default function Home() {
   const router = useRouter();
-  const [data, setData] = useState<any>();
+  const [sets, setSets] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
+
+  // TODO: Axe this on component re-write
+  const constructSubtitle = (displayScore: Record<string, number>): string => {
+    const keys = Object.keys(displayScore)
+    return `${keys[0]}: ${displayScore[keys[0]]} - ${keys[1]}: ${displayScore[keys[1]]}`
+  }
 
   useEffect(() => {
     async function fetchPosts() {
@@ -46,7 +52,7 @@ export default function Home() {
         }
 
         const result = await response.json();
-        setData(result);
+        setSets(result);
         setLoading(false);
       } catch (err) {
         // @ts-ignore
@@ -64,11 +70,11 @@ export default function Home() {
   return (
     <div className="flex flex-col mx-auto mt-10">
       <h1 className="text-xl text-center mb-8">Player Results</h1>
-      {data?.player.sets.nodes.map((set: any) => (
+      {sets.map((set: any) => (
         <Card 
           key={set.id}
           title={set.event.name}
-          subtitle={set.displayScore}
+          subtitle={constructSubtitle(set.displayScore)}
           className="mx-auto my-2 w-[375px]"
         />
       ))}
