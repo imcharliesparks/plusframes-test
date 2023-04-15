@@ -1,4 +1,4 @@
-import { IPFUser } from '@/models/PFUser'
+import { IPFUser } from './models/PFUser'
 
 export function seedPlayers(players: IPFUser[]) {
 	players.sort((a, b) => b.seedVal - a.seedVal)
