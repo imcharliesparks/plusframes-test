@@ -41,7 +41,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 #### SSR Components
 - To fetch data in a component hydrated on the server side, export a function called `getServerSideProps` at the end of your component file.
 - Inside of that, you basically just follow the exact steps in the API route; however, instead of sending the data off in a response, you return an object in the shape of:
-
 ```typescript
 {
  props: {

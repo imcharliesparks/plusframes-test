@@ -1,5 +1,4 @@
 import { getClient } from '@/lib/start-apollo-client'
-import { START_API_ENDPOINT } from '@/shared/constants'
 import { APIMethods, APIStatuses, GeneralAPIResponses } from '@/shared/types'
 import { extractMatchScores } from '@/shared/utils'
 import { withAuth } from '@clerk/nextjs/dist/api'
@@ -16,7 +15,7 @@ const handler = withAuth(async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	try {
-		const graphQLClient = getClient(START_API_ENDPOINT)
+		const graphQLClient = getClient(process.env.START_API_ENDPOINT!)
 		const { data } = await graphQLClient.query({
 			query: Sets
 		})

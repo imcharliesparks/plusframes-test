@@ -5,3 +5,4 @@
 - [ ] Extract out loading for SSR components to it's own context provider
 - [ ] Add global error handling page
 - [ ] Axe example components when real pages are complete
+- [ ] Setup cleaner state updates on polling
