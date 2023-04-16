@@ -1,3 +1,5 @@
+import { IPFUser } from '@/lib/models/PFUser'
+
 export const extractMatchScores = (input: string): { [player: string]: number } => {
 	const pattern = /(.*\S)\s+(\d+)\s*-\s*(.*\S)\s+(\d+)$/
 	const match = input.match(pattern)
@@ -15,4 +17,18 @@ export const extractMatchScores = (input: string): { [player: string]: number } 
 	}
 
 	throw new Error('Invalid input format')
+}
+
+export function seedPlayers(players: IPFUser[]) {
+	players.sort((a, b) => b.seedVal - a.seedVal)
+
+	const pairings: [IPFUser, IPFUser][] = []
+
+	for (let i = 0; i < players.length / 2; i++) {
+		const highSeed = players[i]
+		const lowSeed = players[players.length - 1 - i]
+		pairings.push([highSeed, lowSeed])
+	}
+
+	return pairings
 }

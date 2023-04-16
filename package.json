@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.12",
     "@clerk/nextjs": "^4.16.2",
     "@types/mongoose": "^5.11.97",
     "@types/node": "18.15.11",
@@ -18,7 +19,6 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "graphql": "^16.6.0",
-    "graphql-request": "^6.0.0",
     "mongoose": "^7.0.3",
     "next": "13.3.0",
     "postcss": "8.4.21",

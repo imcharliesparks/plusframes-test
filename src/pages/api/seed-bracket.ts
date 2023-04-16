@@ -1,6 +1,6 @@
 import { connectToMongoDB } from '@/lib/db'
 import { PFUser } from '@/lib/models/PFUser'
-import { seedPlayers } from '@/lib/seed'
+import { seedPlayers } from '@/shared/utils'
 import { withAuth } from '@clerk/nextjs/dist/api'
 import { NextApiRequest, NextApiResponse } from 'next'
 

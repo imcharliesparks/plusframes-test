@@ -1,17 +1,12 @@
+import { getClient } from '@/lib/start-apollo-client'
+import { START_API_ENDPOINT } from '@/shared/constants'
 import { APIMethods, APIStatuses, GeneralAPIResponses } from '@/shared/types'
 import { extractMatchScores } from '@/shared/utils'
 import { withAuth } from '@clerk/nextjs/dist/api'
-import { GraphQLClient, gql } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
+import Sets from '@/lib/queries/sets.graphql'
 
-const START_API_ENDPOINT = 'https://api.start.gg/gql/alpha'
-
-const graphQLClient = new GraphQLClient(START_API_ENDPOINT, {
-	headers: {
-		authorization: `Bearer ${process.env.START_API_KEY}`
-	}
-})
-
+// CS NOTE: This is an example of hitting the API w/ Apollo Client in an API route
 // TODO: Update the typing in here once we have solid idea of the response types
 const handler = withAuth(async (req: NextApiRequest, res: NextApiResponse) => {
 	const { method } = req
@@ -21,12 +16,10 @@ const handler = withAuth(async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	try {
-		// Forward the incoming request to the external GraphQL API
-		const query = gql`
-			${req.body.query}
-		`
-		const variables = req.body.variables
-		const data = (await graphQLClient.request(query, variables)) as Record<string, any>
+		const graphQLClient = getClient(START_API_ENDPOINT)
+		const { data } = await graphQLClient.query({
+			query: Sets
+		})
 		const sets =
 			data?.player?.sets?.nodes.map((set: Record<string, any>) => {
 				const updatedSet = {

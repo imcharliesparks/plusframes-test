@@ -1,16 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the first pass at a mobile-first app for TOs to better run events utilizing the Start.gg API.
 
 ## Getting Started
 
-First, run the development server:
+Install deps with your bundler of choice, I'm using `yarn` here.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Start the application with `yarn dev`.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -22,17 +16,36 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Used
+- Authentication - Clerk
+- Data Fetching - Apollo Client
+- Styles - Tailwindcss
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Data Fetching Patterns
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Writing Queries
+- All queries can be written directly to `.graphql` files, we have Webpack bundling setup with a GQL loader, and should be placed in the `/lib/queries` directory. 
 
-## Deploy on Vercel
+#### API Routes
+- To do more traditional server route based data fetching, you need to first set up a new file in the `/pages/api` directory and create a handler method.
+- If this API route needs to be protected, make sure to wrap it with the `withAuth` method exposed by Clerk.
+- Initialize your GQL client instance using `getClient` and pass it the URI of the GQL endpoint. 
+- **NOTE: If you need to hit an endpoint other that start.gg, you need to wire up a new client in the style of `start-apollo-client.ts` and change its consumption in `_app.ts`
+- In your route handler, instantiate the graphql client with `getClient` and provide the API endpoint.
+- Fetch your data with the client, then send the response off just like you would in a normal API route.
+- Hit the route as normal in your component.
+- ???
+- Profit!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### SSR Components
+- To fetch data in a component hydrated on the server side, export a function called `getServerSideProps` at the end of your component file.
+- Inside of that, you basically just follow the exact steps in the API route; however, instead of sending the data off in a response, you return an object in the shape of:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```typescript
+{
+ props: {
+  result: <your-query-result>
+ }
+}
+```

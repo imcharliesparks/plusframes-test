@@ -1,4 +1,7 @@
 - [ ] Correlate our PFUser data with the data from Clerk
 - [ ] Figure out how to properly gather player seed data
-- [ ] Wire up GQL tooling (Apollo, playground, etc.)
+- [X] Wire up GQL tooling (Apollo, playground, etc.)
 - [ ] Figure out Webpack PackFileCacheStrategy warning at buildtime
+- [ ] Extract out loading for SSR components to it's own context provider
+- [ ] Add global error handling page
+- [ ] Axe example components when real pages are complete
