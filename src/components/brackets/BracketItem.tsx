@@ -6,10 +6,12 @@ type BracketProps = {
   sponsor?: string
 }
 
-const Bracket = ({ playerNames, isWinner, sponsor }: BracketProps) => {
+const BracketItem = ({ playerNames, isWinner, sponsor }: BracketProps) => {
   return (
-    <div>Bracket</div>
+    <div>
+      
+    </div>
   )
 }
 
-export default Bracket
+export default BracketItem
