@@ -3,15 +3,14 @@ import { useQuery } from '@apollo/client'
 import EventSets from '../../lib/queries/EventSets.graphql'
 import Loading from '@/components/general/Loading'
 import BracketItem from '@/components/brackets/BracketItem'
-import { extractMatchScores } from '@/shared/utils'
 
 const Bracket = () => {
   const { loading, error, data } = useQuery(EventSets, {
     // pollInterval: Number(process.env.POLL_INTERVAL ?? 0)
     variables: {
-      eventId: 520343,
+      eventId: 857807,
       page: 1,
-      perPage: 10,
+      perPage: 20,
     }
   })
 
