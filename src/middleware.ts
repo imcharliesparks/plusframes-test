@@ -9,17 +9,17 @@ const isPublic = (path: string) => {
 }
 
 export default withClerkMiddleware((request: NextRequest) => {
-	if (isPublic(request.nextUrl.pathname)) {
-		return NextResponse.next()
-	}
+	// if (isPublic(request.nextUrl.pathname)) {
+	// 	return NextResponse.next()
+	// }
 
-	const { userId } = getAuth(request)
+	// const { userId } = getAuth(request)
 
-	if (!userId) {
-		const signInUrl = new URL('/auth/sign-in', request.url)
-		signInUrl.searchParams.set('redirect_url', request.url)
-		return NextResponse.redirect(signInUrl)
-	}
+	// if (!userId) {
+	// 	const signInUrl = new URL('/auth/sign-in', request.url)
+	// 	signInUrl.searchParams.set('redirect_url', request.url)
+	// 	return NextResponse.redirect(signInUrl)
+	// }
 	return NextResponse.next()
 })
 

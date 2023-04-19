@@ -1,3 +1,5 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 export enum APIStatuses {
 	SUCCESS = 'SUCCESS',
 	ERROR = 'ERROR'
@@ -14,4 +16,12 @@ export enum APIMethods {
 	PUT = 'PUT',
 	DELETE = 'DELETE',
 	PATCH = 'PATCH'
+}
+
+export interface TypedRequest<T> extends NextApiRequest {
+	body: T
+}
+
+export interface TypedResponse<T> extends NextApiResponse {
+	json: (data: T) => void
 }

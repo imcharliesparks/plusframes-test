@@ -13,6 +13,7 @@ const graphQLClient = new GraphQLClient(START_API_ENDPOINT, {
 
 // NOTE: Very under construction: pushing before migration to Apollo
 // TODO: Update the typing in here once we have solid idea of the response types
+// TODO: Attempt to get sets by set ID here for completed value
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const { eventId } = req.body
 	try {
