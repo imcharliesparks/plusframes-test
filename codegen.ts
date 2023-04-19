@@ -5,16 +5,13 @@ dotenv.config()
 
 const config: CodegenConfig = {
 	overwrite: true,
-	schema: [
-		{
-			[`https://api.start.gg/gql/alpha`]: {
-				headers: {
-					Authorization: `Bearer ${process.env.START_API_KEY}`
-				}
+	schema: {
+		'https://api.start.gg/gql/alpha': {
+			headers: {
+				Authorization: `Bearer ${process.env.START_API_KEY}`
 			}
 		}
-	],
-	documents: './src/lib/queries/*.graphql',
+	},
 	generates: {
 		'src/lib/queries/startgg.ts': {
 			overwrite: true,
@@ -23,14 +20,14 @@ const config: CodegenConfig = {
 				exposeQueryKeys: true,
 				strict: true,
 				withHooks: true,
-				withComponent: true,
+				withComponent: false,
 				apolloReactCommonImportFrom: '@apollo/client',
 				apolloReactComponentsImportFrom: '@apollo/client/react/components',
 				namingConvention: 'keep',
 				scalars: {
-					DateTime: Date
+					DateTime: 'Date'
 				},
-				output: './src/lib/queries/graphql-types.ts'
+				output: './src/lib/queries/startgg.ts'
 			}
 		},
 		'./graphql.schema.json': {
