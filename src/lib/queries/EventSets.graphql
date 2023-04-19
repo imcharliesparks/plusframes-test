@@ -5,7 +5,7 @@ query EventSets($slug: String = "tournament/game-lab-mega-monthly-presented-by-p
     sets(
       page: $page
       perPage: $perPage
-      sortType: STANDARD
+      sortType: MAGIC
     ) {
       pageInfo {
         total
@@ -13,6 +13,10 @@ query EventSets($slug: String = "tournament/game-lab-mega-monthly-presented-by-p
       nodes {
         id
         winnerId
+        identifier
+        phaseGroup {
+          displayIdentifier
+        }
         slots {
           id
           entrant {
@@ -28,9 +32,16 @@ query EventSets($slug: String = "tournament/game-lab-mega-monthly-presented-by-p
                 displayValue
               }
             }
+            isFinal
           }
         }
       }
     }
   }
 }
+
+
+# Outstanding questions:
+# - Does the presence of "winnderId" mean that the set is complete?
+# - Can we trust the "MAGIC" sort order?
+# - How can we pull where in the bracket this is?
