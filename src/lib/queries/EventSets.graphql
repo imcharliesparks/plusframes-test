@@ -1,5 +1,5 @@
-query EventSets($eventId: ID!, $page: Int!, $perPage: Int!) {
-  event(id: $eventId) {
+query EventSets($slug: String = "tournament/game-lab-mega-monthly-presented-by-plusframesgg/event/dragon-ball-fighterz", $page: Int = 1, $perPage: Int = 500) {
+  event(slug: $slug) {
     id
     name
     sets(
@@ -12,11 +12,22 @@ query EventSets($eventId: ID!, $page: Int!, $perPage: Int!) {
       }
       nodes {
         id
+        winnerId
         slots {
           id
           entrant {
             id
             name
+            team {
+              name 
+            }
+          }
+          standing {
+            stats {
+              score {
+                displayValue
+              }
+            }
           }
         }
       }
