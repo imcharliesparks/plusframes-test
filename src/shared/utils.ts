@@ -32,3 +32,14 @@ export function seedPlayers(players: IPFUser[]) {
 
 	return pairings
 }
+
+export function formatPlayerName(playerName: string): string[] {
+	if (!playerName.includes('|')) {
+		return ['', playerName]
+	}
+	const strippedName = playerName.split('|')
+	const sponsor = strippedName[0].trim()
+	const name = strippedName[1].trim()
+
+	return [sponsor, name]
+}
