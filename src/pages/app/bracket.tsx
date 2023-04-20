@@ -19,15 +19,17 @@ const Bracket = () => {
 
   return loading ? <Loading /> 
   : (
-    <div className="flex flex-col items-center py-8 container bg-gray-100">
-      <div>
-        <h2 className="text-2xl mb-2">Matches</h2>
+    <div className="bg-gray-100">
+      <div className="flex flex-col items-center py-8 container ">
+        <div>
+          <h2 className="text-2xl mb-2">Matches</h2>
+        </div>
+        {
+          data.event.sets.nodes.map((set: any) => (
+            <BracketItem key={set.id} set={set} />
+          ))
+        }
       </div>
-      {
-        data.event.sets.nodes.map((set: any) => (
-          <BracketItem key={set.id} set={set} />
-        ))
-      }
     </div>
   )
 }
