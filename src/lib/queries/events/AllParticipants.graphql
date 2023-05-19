@@ -1,0 +1,30 @@
+query AllParticipants($tourneySlug: String!) {
+	tournament(slug: $tourneySlug) {
+		id
+		name
+		participants(query: {}) {
+			pageInfo {
+				total
+			}
+			nodes {
+				id
+				gamerTag
+				user {
+					id
+					slug
+					tournaments(query: {}) {
+						pageInfo {
+							total
+						}
+						nodes {
+							name
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Get phases for event
+# Check current event

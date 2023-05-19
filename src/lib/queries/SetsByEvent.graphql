@@ -1,0 +1,22 @@
+query SetsByEvent($slug: String = "tournament/game-lab-mega-monthly-presented-by-plusframesgg/event/dragon-ball-fighterz", $page: Int = 1, $perPage: Int = 500) {
+  event(slug: $slug) {
+    entrants(query:{page: $page, perPage: $perPage}) {
+      nodes {
+        paginatedSets(page: $page, perPage: $perPage) {
+          nodes {
+            fullRoundText
+            slots {
+              entrant {
+                id
+                name
+                team {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

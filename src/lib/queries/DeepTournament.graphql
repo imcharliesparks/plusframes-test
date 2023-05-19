@@ -1,0 +1,26 @@
+  query TournamentQuery($slug: String) {
+		tournament(slug: $slug){
+			id
+			name
+			events {
+				id
+				name
+        standings(query:{page:1 perPage:10}) {
+          nodes {
+						entrant {
+							paginatedSets(page:1 perPage:10) {
+									nodes{
+                    fullRoundText
+                    slots(includeByes:true) {
+                      entrant {
+                        name
+                      }
+                    }
+                  }
+                }
+            }
+          }
+        }
+			}
+		}
+	}

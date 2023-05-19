@@ -23,7 +23,7 @@ query EventSets($slug: String = "tournament/game-lab-mega-monthly-presented-by-p
             id
             name
             team {
-              name 
+              name
             }
           }
           standing {
@@ -40,8 +40,10 @@ query EventSets($slug: String = "tournament/game-lab-mega-monthly-presented-by-p
   }
 }
 
-
 # Outstanding questions:
 # - Does the presence of "winnderId" mean that the set is complete?
 # - Can we trust the "MAGIC" sort order?
 # - How can we pull where in the bracket this is?
+# - Check for field for sponsor tag
+# - Check support for sockets/webhooks
+# - Check for match status (completed, in progress)

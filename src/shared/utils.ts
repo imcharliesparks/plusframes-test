@@ -19,6 +19,7 @@ export const extractMatchScores = (input: string): { [player: string]: number } 
 	throw new Error('Invalid input format')
 }
 
+// TODO: For future re-writes, need to not count DQs against seed weighting
 export function seedPlayers(players: IPFUser[]) {
 	players.sort((a, b) => b.seedVal - a.seedVal)
 
