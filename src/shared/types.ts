@@ -25,3 +25,8 @@ export interface TypedRequest<T> extends NextApiRequest {
 export interface TypedResponse<T> extends NextApiResponse {
 	json: (data: T) => void
 }
+
+export type StartGGCredentials = {
+	email: string
+	password: string
+}

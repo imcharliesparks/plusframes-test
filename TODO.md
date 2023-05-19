@@ -8,3 +8,7 @@
 - [ ] Setup cleaner state updates on polling
 - [ ] Figure out how the hell to make the brackets cleaner when the player names are longer
 - [ ] Look into pathway to replace Calisto scoreboard (per DotMP4's suggestion)
+
+### Scraping
+
+- If current approach faces proxy, bot, and geolocation issues, try a GUI tool like ZenRows
